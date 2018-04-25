@@ -4,13 +4,17 @@
     <?php
     require_once "conexion_libros.php";
     $result;
+    //tomamos el dato por get
     $id = $_GET["id"];
+    //todos los datos tomados por get son de tipo string por lo tanto
+    //parseamos a tipo int
     $id = (int)$id;
-
+//consulta para saber los datos del libro
     $sql = 'SELECT L.id_libros, L.titulo, L.npaginas, L.aniopublicacion, L.precioactual, L.stock, M.materia, E.editorial, E.ciudad, A.nombre,
 A.paterno, A.materno, A.direccion, A.pais, A.nickname
 FROM libros L INNER JOIN materia M ON L.id_materia = M.id_materia INNER JOIN editorial E 
 ON E.id_editorial = L.id_editorial INNER JOIN autor A ON L.id_autor=A.id_autor WHERE L.id_libros = '.$id;
+    //ejecutamos la consulta para despues
     $result = $conn->query($sql);
     $rows = $result->fetchAll();
     ?>

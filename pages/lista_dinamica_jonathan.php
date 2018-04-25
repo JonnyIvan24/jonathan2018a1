@@ -2,7 +2,7 @@
 // Insertamos el código PHP donde nos conectamos a la base de datos *******************************
 require_once "conexion_libros.php";
 $result = "";
-// Escribimos la consulta para recuperar los departamentos de la tabla departamentos **************
+// Escribimos la consulta para recuperar los autores de la tabla autor **************
 $sql = 'SELECT * FROM autor';
 // Almacenamos los resultados de la consulta en una variable llamada $smtp a partir de la conexión
 $stmt = $conn->query($sql);
@@ -42,7 +42,7 @@ if (empty($rows)) {
         /* Aquí acaba la definición de la función que se usará para instaciar objetos XMLHttpRequest */
         var objeto_AJAX = crear_objeto_XMLHttpRequest();
 
-        /* La siguiente función se ejecuta cuando es invocada por un cambio en el control de la lista de departamentos. */
+        /* La siguiente función se ejecuta cuando es invocada por un cambio en el control de la lista de autores. */
         function pedirlibros(){
             var URL = "obtener_libros.php";
             objeto_AJAX.open("POST", URL, true);
@@ -71,7 +71,7 @@ if (empty($rows)) {
                     <label for="Comboautor">Nombre del autor: </label>
                     <select name="Comboautor" id="Comboautor" onChange="javascript:pedirlibros();">
                         <option value="0">-- Selecciona un autor --</option>
-                        <?php
+                        <?php //ponemos los registros de los autores con la ayuda de un foreach
                         foreach ($rows as $row)
                         {
                             echo '<option value="'.$row['id_autor'].'">'.$row['nombre'].' '.$row['paterno'].'</option>';
