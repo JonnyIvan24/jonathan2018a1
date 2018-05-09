@@ -8,9 +8,9 @@ $nick = $_POST["txt_nick"];
 
     $sql = "SELECT nickname FROM autor WHERE nickname = '".$nick."'";
     $result = $conn->query($sql);
-    $rows = $result->fetchAll();
+    $rows = $result->rowCount();
     $nick = "";
-    if (empty($rows) || $rows == null){
+    if (empty($rows) || $rows == null || $rows == 0){
         echo ($resultado);
         die();
     }else{
